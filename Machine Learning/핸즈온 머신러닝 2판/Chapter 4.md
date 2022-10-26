@@ -2,20 +2,20 @@
 
 ## [4.1] 선형 회귀
 * 선형 회귀 모델의 예측
-    * $ y  = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + ... +\theta_n x_n$ 
+    * $y  = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + ... +\theta_n x_n$ 
 
-    * $ y = h_\theta(x) = \theta \cdot x $
+    * $y = h_\theta(x) = \theta \cdot x$
 
-    * $ y $는 예측값, $ n $ 은 특성의 수, $x_i$는 $i$번째 특성값, $\theta_j$는 $j$번째 모델 파라미터
+    * $y$는 예측값, $n$ 은 특성의 수, $x_i$는 $i$번째 특성값, $\theta_j$는 $j$번째 모델 파라미터
 
 * 성능 평가 지표
-    * 평균 제곱근 오차(RMSE) : $ \sqrt{MSE(\theta)} $
-        * RMSE를 최소화하는 $ \theta $를 찾아야 한다
+    * 평균 제곱근 오차(RMSE) : $\sqrt{MSE(\theta)}$
+        * RMSE를 최소화하는 $\theta$를 찾아야 한다
 
 * 정규 방정식
-    * $ \theta = (X^TX)^{-1}X^Ty $
-    * $ \theta $ 는 비용 함수를 최소화하는 값이다.
-    * $ y $는 $y^{1}$ 부터 $y^{m}$ 까지 포함하는 타겟 벡터
+    * $\theta = (X^TX)^{-1}X^Ty$
+    * $\theta$ 는 비용 함수를 최소화하는 값이다.
+    * $y$는 $y^{1}$ 부터 $y^{m}$ 까지 포함하는 타겟 벡터
 
 ```python
 import numpy as np
@@ -27,7 +27,7 @@ X_b = np.c_[np.ones((100, 1)), X] # 모든 샘플에 x0 = 1을 추가
 theta_best = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y) #정규방정식
 print(theta_best)
 ```
-* 위 코드를 통해 예측된 $ \theta_0, \theta_1 $을 알 수 있다. ($ \theta_0 = 4, \theta_1 = 3 $ 을 기대한다)
+* 위 코드를 통해 예측된 $\theta_0, \theta_1$을 알 수 있다. ( $\theta_0 = 4, \theta_1 = 3$ 을 기대한다)
 
 ```python
 X_new = np.array([[0], [2]]) # x0 = 0 , x1 = 2
@@ -44,7 +44,7 @@ lin_reg.intercept_, lin_reg.coef_ #선형 회귀 모델의 절편과 기울기
 lin_reg.predict(X_new)
 ``` 
 * sklearn의 LinearRegression 함수를 통해 간단하게 구현이 가능하다
-    * 계산 복잡도 $ O(n^2) $
+    * 계산 복잡도 $O(n^2)$
 
 ## [4.2] 경사 하강법
 <br>
@@ -68,15 +68,15 @@ lin_reg.predict(X_new)
 * 경사 하강법을 사용할 때는 반드시 모든 특성이 같은 스케일을 갖도록 만들어야 한다.(ex. StadardScaler) 그렇지 않으면 수렴하는데 훨씬 오래걸린다.
 
 ### 배치 경사 하강법
-* 편도함수 : $ \theta_j $ 가 조금 변경될 때 비용 함수가 얼마나 바뀌는지 계산 
+* 편도함수 : $\theta_j$ 가 조금 변경될 때 비용 함수가 얼마나 바뀌는지 계산 
 
-* 비용함수의 편도함수 : $ \frac{\partial}{\partial \theta_j} MSE(\theta) = \frac{2}{m} \sum_{i=1}^{m}(\theta^Tx^{i} - y^i)x_j^i $
+* 비용함수의 편도함수 : $\frac{\partial}{\partial \theta_j} MSE(\theta) = \frac{2}{m} \sum_{i=1}^{m}(\theta^Tx^{i} - y^i)x_j^i$
 
 * ![비용함수의 그레디언트 벡터](https://ifh.cc/g/YPjhbV.png)
 
 * 위 공식은 매 스텝에서 훈련 데이터 전체를 사용하여 학습한다. 그런 이유로 큰 훈련 세트에서는 느리다는 단점이 있다.
 
-* 경사 하강법의 스텝 : $ \theta^{next step} = \theta - \eta \nabla_{\theta}MSE(\theta) $ 
+* 경사 하강법의 스텝 : $\theta^{next step} = \theta - \eta \nabla_{\theta}MSE(\theta)$ 
 
 ```python
 eta = 0.1 #학습률
@@ -186,10 +186,10 @@ lin_reg.fit(X_poly, y)
 
 * 릿지 회귀는 규제가 추가된 선형 회귀 버전이다.
 
-* 규제항 $ \alpha \Sigma_{i=1}^{n} \theta_i^2 $ 이 비용 함수에 추가된다.
-    * $ \alpha $는 모델을 얼마나 많이 규제할지 조정한다. 
+* 규제항 $\alpha \Sigma_{i=1}^{n} \theta_i^2$ 이 비용 함수에 추가된다.
+    * $\alpha$는 모델을 얼마나 많이 규제할지 조정한다. 
 
-* 편향 $ \theta_0 $ 는 규제되지 않는다 따라서 $ i $는 1부터 시작한다
+* 편향 $\theta_0$ 는 규제되지 않는다 따라서 $i$는 1부터 시작한다
 
 <br>
 
@@ -212,9 +212,9 @@ sgd_reg.predict([[1.5]])
 ### 라쏘 회귀
 * 라쏘 회귀는 선형 회귀의 또 다른 규제 버전이다
  
-* 릿지 회귀처럼 비용 함수에 규제항을 더하지만 가중치 벡터 $ l_1 $ 노름을 사용한다
+* 릿지 회귀처럼 비용 함수에 규제항을 더하지만 가중치 벡터 $l_1$ 노름을 사용한다
 
-* $ J(\theta) = MSE(\theta) + \alpha\Sigma_{i=1}^n \left\vert \theta_i \right\vert$
+* $J(\theta) = MSE(\theta) + \alpha\Sigma_{i=1}^n \left\vert \theta_i \right\vert$
 
 <br>
 
@@ -232,13 +232,13 @@ lasso_reg = Lasso(alpha = 0.1)
 lasso_reg.fit(X, y)
 
 
-SGDRegressor(penalty = "l1") #라쏘 대신 사용 가능하다
+SGDRegressor(penalty = "") #라쏘 대신 사용 가능하다
 ```
 
 ## 엘라스틱넷
 * 엘라스틱넷은 릿지 회귀와 라쏘 회귀를 절충한 모델이다
 
-* $ J(\theta) = MSE(\theta) + r\alpha\Sigma_{i=1}^n\left\vert \theta_i \right\vert + \frac{1-r}{2}\alpha\Sigma_{i=1}^n\theta_i^2$
+* $J(\theta) = MSE(\theta) + r\alpha\Sigma_{i=1}^n\left\vert \theta_i \right\vert + \frac{1-r}{2}\alpha\Sigma_{i=1}^n\theta_i^2$
 
 * 일반적으로 릿지가 기본이 되지만 쓰이는 특성이 몇 개 뿐이라고 의심되면 라쏘나 엘라스틱넷이 낫다
     * 그 이유는 불필요한 특성의 가중치를 0으로 만들어 주기 때문이다
@@ -303,7 +303,8 @@ best_val_rmse = np.sqrt(val_errors[best_epoch])
 * 샘플 x가 주어지면 먼저 소프트맥스 회귀 모델이 각 클래스 k에 대한 점수를 계산하고, 그 점수에 소프트맥스 함수를 적용하여 각 클래스의 확률을 추정한다.
     * 클래스 k에 대한 소프트맥스 점수 : $S_k(x) = (\theta^{k})^T X$
 
-* 소프트맥스 함수 : $P_k = \sigma(s(x))_k = \frac{exp(s_k(x))}{\Sigma_{j=1}^Kexp(s_j(x))}$ 
+* 소프트맥스 함수 
+    * ![소프트맥스 함수](https://ifh.cc/g/frT13B.png)
     * K는 클래스 수, $s(x)$는 샘플 x에 대한 각 클래스의 점수를 담은 벡터, 
     * $\sigma(s(x))_k$는 샘플 x에 대한 각 클래스의 점수가 주어졌을 때 이 샘플이 클래스 k에 속할 추정 확률
 
