@@ -62,3 +62,44 @@ SGDClassifier(loss="hinge", alpha = 1(m*C)) # m은 샘플 수
 # 확률적 경사하강법을 적용하여 대체 가능
 ```
 
+## [5.2] 비선형 SVM 분류
+* 비선형 데이터셋을 다루는 한 가지 방법은 다항 특성과 같은 특성을 추가하는 것
+
+![비선형 데이터](https://ifh.cc/g/rkyvbS.png) 
+
+* PolynimialFeatures와 StadardScaler, LinearSVC를 연결하여 사용해보자
+
+```python
+from sklearn.datasets import make_moons
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import PolynomialFeatures
+
+#make_moos는 두 개의 반달 모양 데이터셋이다.
+X, y = make_moons(n_samples = 100, noise = 0.15)
+polynomial_svm_clf = Pipeline([
+    ("poly_features", PolynomialFeatures(degree=3)),
+    ("scaler", StandardScaler()), 
+    ("svm_clf", LinearSVC(C=10, loss="hinge"))
+])
+
+polynomial_svm_clf.fit(X,y)
+```
+### 다항식 커널
+* SVM을 사용할 때 커널 트릭(Kernel trick)을 사용하여 실제로는 특성을 추가하지 않으면서 다항식 특성을 추가한 것과 같은 결과를 얻을 수 있다. 
+
+```python
+from sklearn.svm import SVC
+
+poly_kernel_svm_clf = Pipeline([ 
+    ("scaler", StandardScaler()), 
+    ("svm_clf", SVC(kernel="poly", degree=3, coef0=1, C=5)) 
+    #모델이 과대적합 -> 차수를 줄여야함
+    #모델이 과소적합 -> 차수를 늘려야함
+    #coef0는 모델이 높은 차수와 낮은 차수에 얼마나 영향을 받을지 조절
+    ])
+    
+poly_kernel_svm_clf.fit(X, y)
+```
+
+![결과](https://ifh.cc/g/fX57d1.jpg)
+
