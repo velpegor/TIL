@@ -124,9 +124,9 @@ rbf_kernel_svm_clf.fit(X, y)
 ### 계산 복잡도
 |모델|계산복잡도|
 |------|---|
-|LinearSVC|$ O(m × n) $|
-|SGDClassifier|$ O(m × n) $|
-|SVC|$ O(m^2 × n)$ ~ $O(m^3 × n) $|
+|LinearSVC|$O(m × n)$|
+|SGDClassifier|$O(m × n)$|
+|SVC|$O(m^2 × n)$ ~ $O(m^3 × n)$|
 
 ## [5.3] SVM 회귀
 
@@ -137,7 +137,7 @@ rbf_kernel_svm_clf.fit(X, y)
 
 ![SVM 회귀](https://ifh.cc/g/waKpO6.png)
 * 왼쪽은 마진을 크게, 오른쪽은 마진을 작게하여 만듦
-* 이 모델은 $ \varepsilon $에 민감하지 않다
+* 이 모델은 $\varepsilon$에 민감하지 않다
     * 마진 안에서는 훈련 샘플이 추가되어도 모델의 예측에는 영향이 없기 때문
 
 ```python
@@ -170,8 +170,8 @@ svm_poly_reg.fit(X, y)
 ## [5.4] SVM 이론
 
 * 선형 SVM 분류기 모델의 예측
-    * $ W^TX^+b < 0 $ 일때 0으로 예측
-    * $ W^TX^+b >= 0 $ 일때 1으로 예측
+    * $W^TX^+b < 0$ 일때 0으로 예측
+    * $W^TX^+b >= 0$ 일때 1으로 예측
 
 * 선형 SVM 분류기를 훈련한다는 것은 마진 오류를 하나도 발생시키지 않거나(하드 마진), 제한적인 마진 오류를 가지면서(소프트 마진) 가능한 마진을 크게하는 $W$와 $b$를 찾는 것이다. 
 
@@ -209,30 +209,31 @@ svm_poly_reg.fit(X, y)
 * SVC
 
 
-<center>
+<div align="center">
 
 ![image](https://user-images.githubusercontent.com/83739271/204327536-767d81b4-e238-452b-8350-e44e700b269b.png)
 
 ![image](https://user-images.githubusercontent.com/83739271/204326307-035f44e5-c5df-4092-b338-ecd261b7bb65.png)
 
-</center>
+</div>
 
 * boundary의 결정은 위의 그림과 같이, 각 분포로부터 margin을 최대화하는 것을 목표로 결정하게 된다. 즉 boundary의 선에 margin을 덧붙여서 최대한 점에 닿지 않도록 margin을 키우는 것이다
 
-<center>
+<div align="center">
 
 ![image](https://user-images.githubusercontent.com/83739271/204326573-e5bd7e31-6b82-4371-9d5f-caeefb0f6590.png)
-</center>
+
+</div>
 
 * SVC의 경우 Margin안에 포함된 점들의 error를 기준으로 model cost를 계산한다. 거기에 반대방향으로 분류된, 즉 바운더리를 넘어서 존재하는 점들의 error만을 추가한다.  그림을 보면 아래 노란 부분에 포함된 점들과 boundary의 중심에 위치한 직선과의 error를 계산하는 것이다.
 
 * SVR
 
-<center>
+<div align="center">
 
 ![image](https://user-images.githubusercontent.com/83739271/204326978-989e5dd8-2a5b-43f7-a15b-a82fd0bbc088.png)
-
-</center>
+   
+</div>
 
 * 이와 달리 SVR은 일정 Margin의 범위를 넘어선 점들에 대한 error를 기준으로 model cost를 계산한다. 아래 그림으로 본다면 margin 바깥에 위치한 점들과 차이를 계산하는 빨간선이 곧 한 점에 있어서 error로 계산되는 것이다. 
 
