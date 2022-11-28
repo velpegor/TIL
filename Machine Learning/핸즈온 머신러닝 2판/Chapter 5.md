@@ -161,6 +161,79 @@ svm_poly_reg.fit(X, y)
     * LinearSVR은 필요한 시간이 훈련 세트의 크기에 비례해서 선형적으로 늘어남. 하지만 SVR은 훈련 세트가 커지면 훨씬 느려진다.
     * LinearSVC : SVC에서 선형 커널 함수로 가정해 커널을 진행하는 것
         *  선형 커널로 분류할 때 더 빠르게 실행한다는 장점이 있다.
+        *  규제에 편향을 포함하기 때문에, StandardScaler를 수행해야 한다. 
+        *  훈련보다 샘플이 적다면, 성능을 높이기 위해 dual 매개변수를 False로 지정해야 한다.
+
     * LinearSVC는 kernel이라는 파라미터를 받지 않는다. 그 이유는 이미 선형 커널(Linear Kernel)로 가정하기 때문
     * SVC에서 선형 커널 함수로 가정해 커널을 진행하는 것
 
+## [5.4] SVM 이론
+
+* 선형 SVM 분류기 모델의 예측
+    * $ W^TX^+b < 0 $ 일때 0으로 예측
+    * $ W^TX^+b >= 0 $ 일때 1으로 예측
+
+* 선형 SVM 분류기를 훈련한다는 것은 마진 오류를 하나도 발생시키지 않거나(하드 마진), 제한적인 마진 오류를 가지면서(소프트 마진) 가능한 마진을 크게하는 $W$와 $b$를 찾는 것이다. 
+
+![image](https://user-images.githubusercontent.com/83739271/204321259-6fc5a843-0bb3-4438-bdef-0a55faf7bfdc.png)
+* 가중치 벡터가 작을수록 마진은 커진다. 마진을 크게하기 위해 $W$를 최소화하려고 한다.
+
+![image](https://user-images.githubusercontent.com/83739271/204321605-c776a529-edd5-428e-a237-38dba6b18774.png)
+
+![image](https://user-images.githubusercontent.com/83739271/204321770-73163074-afbe-4da5-bbd5-b9019627a74e.png)
+* 소프트 마진 분류기의 목적 함수를 구성하기 위해 각 샘플에 대해 슬랙함수를 도입
+    * 슬랙함수는 $i$번째 샘플이 얼마나 마진을 위반할지 정한다.
+
+</br>
+
+* 하드 마진과 소프트 마진 문제에는 모두 선형적인 제약 조건이 있는 볼록 함수의 이차 최적화 문제이다.
+    * 이런 문제를 콰드라틱 프로그래밍(QP) 문제라고 한다.
+
+![image](https://user-images.githubusercontent.com/83739271/204325035-3859776e-d1a0-4597-a12b-2dca9f08af2e.png)
+
+* 힌지 손실 함수
+    * SVM 알고리즘을 위한 손실 함수 
+    * $t<1$이면 기울기는 -1, $t>1$이면 기울기는 0
+    * SGDClassifier에서 loss 매개변수에 hinge로 지정하면 선형 SVM 문제가 된다.
+        * SGDClassifier에서 $t=1$일때 -1을 사용함.
+
+- - - - -
+
+* SVM
+    * SVC : Classification 에 사용되는 SVM 모델을 의미
+    * SVR : Regression 에 사용되는 SVM 모델을 의미
+
+* SVC vs SVR
+    * SVM을 회귀에 적용하는 방법은 SVC와 목표를 반대로 가지는 것이다. 즉, 마진 내부에 데이터가 최대한 많이 들어가도록 학습
+
+* SVC
+
+
+<center>
+
+![image](https://user-images.githubusercontent.com/83739271/204327536-767d81b4-e238-452b-8350-e44e700b269b.png)
+
+![image](https://user-images.githubusercontent.com/83739271/204326307-035f44e5-c5df-4092-b338-ecd261b7bb65.png)
+
+</center>
+
+* boundary의 결정은 위의 그림과 같이, 각 분포로부터 margin을 최대화하는 것을 목표로 결정하게 된다. 즉 boundary의 선에 margin을 덧붙여서 최대한 점에 닿지 않도록 margin을 키우는 것이다
+
+<center>
+
+![image](https://user-images.githubusercontent.com/83739271/204326573-e5bd7e31-6b82-4371-9d5f-caeefb0f6590.png)
+</center>
+
+* SVC의 경우 Margin안에 포함된 점들의 error를 기준으로 model cost를 계산한다. 거기에 반대방향으로 분류된, 즉 바운더리를 넘어서 존재하는 점들의 error만을 추가한다.  그림을 보면 아래 노란 부분에 포함된 점들과 boundary의 중심에 위치한 직선과의 error를 계산하는 것이다.
+
+* SVR
+
+<center>
+
+![image](https://user-images.githubusercontent.com/83739271/204326978-989e5dd8-2a5b-43f7-a15b-a82fd0bbc088.png)
+
+</center>
+
+* 이와 달리 SVR은 일정 Margin의 범위를 넘어선 점들에 대한 error를 기준으로 model cost를 계산한다. 아래 그림으로 본다면 margin 바깥에 위치한 점들과 차이를 계산하는 빨간선이 곧 한 점에 있어서 error로 계산되는 것이다. 
+
+* 결론적으로 SVM은 각 cost를 최소화하는 boundary를 찾아내는 작업이다.
