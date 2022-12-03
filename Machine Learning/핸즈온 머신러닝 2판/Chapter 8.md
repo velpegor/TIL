@@ -181,7 +181,9 @@ grid_search.fit(X, y)
 * fit_inverse_transform=True를 통해 자동으로 수행
 
 ```python
-rbf_pca = KernelPCA(n_components = 2, kernel="rbf", gamma=0.0433, fit_inverse_transform=True)X_reduced = rbf_pca.fit_transform(X)X_preimage = rbf_pca.inverse_transform(X_reduced)
+rbf_pca = KernelPCA(n_components = 2, kernel="rbf", gamma=0.0433, fit_inverse_transform=True)
+X_reduced = rbf_pca.fit_transform(X)
+X_preimage = rbf_pca.inverse_transform(X_reduced)
 ```
 
 * 그런 다음 재구성 원상 오차를 계산할 수 있다.
