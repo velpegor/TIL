@@ -229,7 +229,7 @@ model = keras.models.Sequential([
 ![image](https://user-images.githubusercontent.com/83739271/206437175-cf620b6a-c015-4c11-bc82-53c8de8b411f.png)
 
 ```python
-#Concatenate 층을 만들고 또 다시 함수처럼 호출하여 두번째 은닉층의 출력과 입력을 연결한다. 입력이 바로 호출됨
+# Concatenate 층을 만들고 또 다시 함수처럼 호출하여 두번째 은닉층의 출력과 입력을 연결한다. 입력이 바로 호출됨
 input_ = keras.layers.Input(shape=X_train.shape[1:])
 hidden1 = keras.layers.Dense(30, activation="relu")(input_)
 hidden2 = keras.layers.Dense(30, activation="relu")(hidden1)
