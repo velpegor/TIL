@@ -212,14 +212,15 @@ X_test = scaler.transform(X_test)
 
 # 분류와의 차이점 : 출력층이 활성화 함수가 없는 하나의 뉴런을 가짐, 손실 함수로 평균 제곱 오차를 사용
 model = keras.models.Sequential([ 
-    keras.layers.Dense(30, activation="relu", input_shape=X_train.shape[1:]), keras.layers.Dense(1)])
+    keras.layers.Dense(30, activation="relu", input_shape=X_train.shape[1:]), 
+    keras.layers.Dense(1)])
     
-    model.compile(loss="mean_squared_error", optimizer="sgd")
-    history = model.fit(X_train, y_train, epochs=20, validation_data=(X_valid, y_valid))
-    mse_test = model.evaluate(X_test, y_test)
+model.compile(loss="mean_squared_error", optimizer="sgd")
+history = model.fit(X_train, y_train, epochs=20, validation_data=(X_valid, y_valid))
+mse_test = model.evaluate(X_test, y_test)
     
-    X_new = X_test[:3] # 새로운 샘플이라고 생각합니다.
-    y_pred = model.predict(X_new)
+X_new = X_test[:3] # 새로운 샘플이라고 생각합니다.
+y_pred = model.predict(X_new)
 ```
 
 ### [10.2.4] 함수형 API를 사용해 복잡한 모델 만들기
