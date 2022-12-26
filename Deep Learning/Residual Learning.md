@@ -9,3 +9,4 @@
   * Optimize하기 쉬워 진다 = Loss값이 쉽게 떨어진다 = 최적의 딥러닝 모델 파라미터를 찾기 쉽다.
 
 * Residual Leanring의 깊이가 깊어져도, 정확도가 향상됨.
+* 기존의 VGG 네트워크보다 더 깊지만 residual block을 활용해 복잡도와 성능은 더 개선되었다.
