@@ -11,7 +11,7 @@
 * [Residual Learning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Residual%20Learning.md)
 * [Degradation Problem](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Degradation%20problem.md)
 * [Batch Normalization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Batch%20Normalization.md)
-
+* [Whitening](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Whitening.md)
 
 ### Python
   * [filter() 함수란?](https://github.com/velpegor/TIL/blob/main/Python/filter()%20%ED%95%A8%EC%88%98.md)
