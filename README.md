@@ -10,6 +10,7 @@
 ### Deep Learning
 * [Residual Learning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Residual%20Learning.md)
 * [Degradation Problem](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Degradation%20problem.md)
+* [Batch Normalization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Batch%20Normalization.md)
 
 
 ### Python
