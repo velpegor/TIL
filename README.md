@@ -16,6 +16,7 @@
 * [Xavier Initialization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Xavier%20Initialization.md)
 * [Weight Initialization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Weight%20Initialization.md)
 * [Pruning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Pruning.md)
+ * [Kernel Pruning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Kernel%20Pruning.md)
 ### Python
   * [filter() 함수란?](https://github.com/velpegor/TIL/blob/main/Python/filter()%20%ED%95%A8%EC%88%98.md)
   * [리눅스 명령어 실행](https://github.com/velpegor/TIL/blob/main/Python/%EB%A6%AC%EB%88%85%EC%8A%A4%20%EB%AA%85%EB%A0%B9%EC%96%B4%20%EC%8B%A4%ED%96%89.md)
