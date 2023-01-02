@@ -16,7 +16,7 @@
 * [Xavier Initialization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Xavier%20Initialization.md)
 * [Weight Initialization](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Weight%20Initialization.md)
 * [Pruning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Pruning.md)
-  * [Kernel Pruning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Kernel%20Pruning.md)
+  * [Filter Pruning](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/Filter%20Pruning.md)
 * [FLOPS](https://github.com/velpegor/TIL/blob/main/Deep%20Learning/FLOPS.md)
 ### Python
   * [filter() 함수란?](https://github.com/velpegor/TIL/blob/main/Python/filter()%20%ED%95%A8%EC%88%98.md)
