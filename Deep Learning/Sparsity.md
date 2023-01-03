@@ -8,5 +8,7 @@
 * 위 세개 행렬중 제일 왼쪽의 행렬이 제일 sparse하다. 하나의 요소를 제외하고는 전부 0이기 때문.
 * 대부분의 weight가 0이면, sparse(희소)한 것으로 간주할 수 있다.
 * 가장 간단한 방법은 $l_{0}$ norm을 활용하는 것
+* <img width="242" alt="image" src="https://user-images.githubusercontent.com/83739271/210326525-a9c70280-07e5-4b60-bd80-e2ebbea3b28b.png">
+
   * 수식에 따르면 각 요소가 1 또는 0으로 되며, 0이 아닌 값들의 개수가 $l_{0}$ norm이 된다.
   * 이것이 전체 weight 개수 대비 $l_{0}$ norm의 값을 확인하면 sparsity를 알 수 있다.
